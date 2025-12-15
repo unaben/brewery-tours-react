@@ -1,0 +1,114 @@
+
+.filters {
+  grid-area: sidebar;
+  padding-left: 1rem;
+}
+
+.title {
+  padding: 1rem;
+  border: 1px solid #000;
+  border-bottom: none;
+  border-radius: 0.25rem 0.25rem 0 0;
+}
+
+.typeForm {
+  padding: 1rem;
+  display: grid;
+  gap: 1rem;
+  border: 1px solid #000;
+  border-bottom: none;
+}
+
+.label {
+  font-weight: bold;
+  color: #424242;
+}
+
+.cityHeader {
+  padding: 1rem 1rem 0;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  border: 1px solid #000;
+  border-bottom: none;
+}
+
+.cityHeader h3 {
+  font-size: 1rem;
+  color: #424242;
+}
+
+.clearButton {
+  border: none;
+  background: transparent;
+  color: #1565c0;
+  text-decoration: underline;
+  font-size: 0.75rem;
+  cursor: pointer;
+}
+
+.cityForm {
+  padding: 1rem;
+  display: grid;
+  grid-template-columns: 24px auto;
+  row-gap: 0.5rem;
+  column-gap: 0.5rem;
+  align-items: center;
+  border: 1px solid #000;
+  border-top: none;
+  border-radius: 0 0 0.25rem 0.25rem;
+}
+
+.checkbox {
+  cursor: pointer;
+}
+
+.cityLabel {
+  cursor: pointer;
+}
+
+/* Custom Select Styling */
+.filter-select {
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 1rem;
+  font-family: inherit;
+  color: #000;
+  background-color: white;
+  border: none;
+  outline: 1px solid #000;
+  border-radius: 3px;
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23333' d='M1.41 0L6 4.59L10.59 0L12 1.41l-6 6l-6-6z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 12px;
+  padding-right: 36px;
+  transition: all 0.2s ease;
+}
+
+.filter-select:hover {
+  border-color: #9ca3af;
+}
+
+.filter-select:focus {
+  outline: 1px solid #1565c0;
+  border: none ;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.filter-select:disabled {
+  background-color: #f3f4f6;
+  color: #9ca3af;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.filter-select option:first-child {
+  color: #9ca3af;
+}
+
+.filter-select::-ms-expand {
+  display: none;
+}
