@@ -16,7 +16,6 @@ export default function Header() {
     <header className={styles.header}>
       <section className={styles.section}>
         <h2 className={styles.title}>Welcome to Brewery Tours</h2>
-
         <form
           id="select-state-form"
           autoComplete="off"

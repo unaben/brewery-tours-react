@@ -7,10 +7,25 @@ const initialApiData: ApiResponseData<never> = {
   error: null,
 };
 
-function useFetchData<T>(url: string) {
+function useFetchData<T>(url: string | null) {
   const [apiData, setApiData] = useState<ApiResponseData<T>>(initialApiData);
+  
+  const isEmpty = !url || url.trim() === "";  
+  
+  const result: ApiResponseData<T> = isEmpty
+    ? {
+        isLoading: false,
+        data: [],
+        error: {
+          message: "Please select a state to view breweries",
+          statusCode: null,
+        },
+      }
+    : apiData;
 
   useEffect(() => {
+    if (isEmpty) return;
+
     let isMounted = true;
     const abortController = new AbortController();
 
@@ -18,7 +33,9 @@ function useFetchData<T>(url: string) {
       setApiData((prev) => ({ ...prev, isLoading: true, error: null }));
 
       try {
-        const res = await fetch(url);
+        const res = await fetch(url, { 
+          signal: abortController.signal 
+        });
 
         if (!res.ok) {
           const structuredError: FetchError = {
@@ -46,6 +63,10 @@ function useFetchData<T>(url: string) {
           });
         }
       } catch (error) {
+        if (error instanceof Error && error.name === "AbortError") {
+          return;
+        }
+
         const structuredError: FetchError = {
           message:
             error instanceof Error ? error.message : "Unknown error occurred",
@@ -66,11 +87,11 @@ function useFetchData<T>(url: string) {
 
     return () => {
       isMounted = false;
-    abortController.abort();
+      abortController.abort();
     };
-  }, [url]);
+  }, [url, isEmpty]);
 
-  return apiData;
+  return result;
 }
 
 export default useFetchData;
